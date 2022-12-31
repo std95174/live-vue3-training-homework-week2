@@ -66,10 +66,10 @@
                         </div>
                     </div>
 
-                    <div class="m-3">
-            <span class="me-2" v-for="imageUrl in selectedProduct.imagesUrl" :key="selectedProduct.title">
-              <img :src="imageUrl" :alt="selectedProduct.title" class="images">
-            </span>
+                    <div class="m-3 row">
+                        <div class="col-12 col-md-6 col-lg-4" v-for="imageUrl in selectedProduct.imagesUrl" :key="imageUrl">
+                            <img :src="imageUrl" :alt="selectedProduct.title" class="img-thumbnail ">
+                        </div>
                     </div>
                 </div>
                 <span class="text-secondary" v-else>請選擇一個商品查看</span>
