@@ -12,19 +12,15 @@ const app = createApp({
         async checkUser(){
             try {
                 const {data} = await instance.post('/api/user/check');
-                if (data.success) {
-                    console.log('驗證通過')
-                }
             } catch (e) {
                 alert('請先登入')
-                console.log('驗證失敗，請重新登入')
+                console.log(e)
                 window.location = 'login.html';
             }
         },
         async getProducts(){
             try {
                 const {data} = await instance.get('/api/frank-hex-api/admin/products');
-                console.log(data)
                 if (data.success) {
                     this.products = data.products;
                 }

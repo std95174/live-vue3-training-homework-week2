@@ -18,7 +18,6 @@ const app = createApp({
                     password: this.password,
                 });
 
-                console.log(data)
                 if (!!data.success) {
                     this.isLoginSuccess = true;
                     this.message = '登入成功，頁面跳轉中...'

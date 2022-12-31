@@ -1,6 +1,5 @@
 // get 'hexToken' from cookie if it existed
 const cookie = document.cookie;
-console.log(cookie)
 let token = ''
 if(!!cookie) {
     const cookieArray = cookie.split(';');
