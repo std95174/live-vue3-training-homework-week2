@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>產品列表</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <div class="row py-3">
+            <div class="col-6">
+                <h2>產品列表</h2>
+                <table class="table align-middle">
+                    <thead>
+                    <tr>
+                        <th scope="col">產品名稱</th>
+                        <th scope="col">原價</th>
+                        <th scope="col">售價</th>
+                        <th scope="col">是否啟用</th>
+                        <th scope="col">查看細節</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="product in products" :key="product.id">
+                        <th scope="row">{{ product.title }}</th>
+                        <td>{{ product.origin_price }}</td>
+                        <td>{{ product.price }}</td>
+                        <td class="text-center">
+                            <span class="text-success" v-if="product.is_enabled > 0">啟用</span>
+                            <span class="text-danger" v-else>未啟用</span>
+                        <td>
+                            <button type="button" class="btn btn-primary" @click="selectedProduct = product">查看細節
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <span>目前有 {{products.length }} 項產品</span>
+            </div>
+            <div class="col-6">
+                <h2>單一產品細節</h2>
+                <div v-if="selectedProduct.title">
+                    <div class="card">
+                        <img :src="selectedProduct.imageUrl" class="card-img-top primary-image pt-3"
+                             :alt="selectedProduct.title">
+
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h3 class="fs-5">
+                                    <span class="me-3">{{ selectedProduct.title }}</span>
+                                    <span class="badge bg-primary">{{ selectedProduct.category }}</span>
+                                </h3>
+                            </div>
+                            <div class="card-text">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">商品描述：{{ selectedProduct.description }}</li>
+                                    <li class="list-group-item">商品內容：{{ selectedProduct.content }}</li>
+                                    <li class="list-group-item">價格：
+                                        <span class="text-secondary"><del>{{selectedProduct.origin_price}}</del></span>
+                                        {{ selectedProduct.price }} 元 / 個
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="m-3">
+            <span class="me-2" v-for="imageUrl in selectedProduct.imagesUrl" :key="selectedProduct.title">
+              <img :src="imageUrl" :alt="selectedProduct.title" class="images">
+            </span>
+                    </div>
+                </div>
+                <span class="text-secondary" v-else>請選擇一個商品查看</span>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+<script src="./index.js" type="module"></script>
+</body>
+</html>
